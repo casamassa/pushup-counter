@@ -104,6 +104,10 @@ pip freeze > requirements.txt
 
 ---
 
+https://developers.google.com/mediapipe/solutions/vision/pose_landmarker
+
+https://pypi.org/project/opencv-python/
+
 https://manivannan-ai.medium.com/find-the-angle-between-three-points-from-2d-using-python-348c513e2cd
 
 ## Contributing
