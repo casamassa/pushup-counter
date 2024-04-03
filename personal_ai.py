@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 import threading
 import queue
+import math
 
 class PersonalAI:
     def __init__(self, file_name = "video1.mp4"):
@@ -15,6 +16,18 @@ class PersonalAI:
         self.options = python.vision.PoseLandmarkerOptions(
             base_options=python.BaseOptions(model_asset_path=self.model_path),
             running_mode=python.vision.RunningMode.VIDEO)
+        
+    def find_angle(self, landmarks, p1, p2, p3):
+        #https://manivannan-ai.medium.com/find-the-angle-between-three-points-from-2d-using-python-348c513e2cd
+        land = landmarks.pose_landmarks[0]
+        x1, y1 = (land[p1].x, land[p1].y)
+        x2, y2 = (land[p2].x, land[p2].y)
+        x3, y3 = (land[p3].x, land[p3].y)
+
+        angle = math.degrees(math.atan2(y3-y2, x3-x2) - 
+                             math.atan2(y1-y2, x1-x2))
+
+        return angle
       
     def draw_landmarks_on_image(self, rgb_image, detection_result):
         pose_landmarks_list = detection_result.pose_landmarks
@@ -63,7 +76,7 @@ class PersonalAI:
 
             cap.release()
             cv2.destroyAllWindows()
-            
+
             self.image_q.put((1, 1, "done"))
 
     def run(self, draw=True, display=False):
