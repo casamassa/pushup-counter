@@ -104,6 +104,8 @@ pip freeze > requirements.txt
 
 ---
 
+https://logessiva.medium.com/an-easy-guide-for-pose-estimation-with-googles-mediapipe-a7962de0e944
+
 https://developers.google.com/mediapipe/solutions/vision/pose_landmarker
 
 https://pypi.org/project/opencv-python/
